@@ -6,6 +6,10 @@ module.exports = {
             "/mob_api":{
                 target:"https://m.meilele.com",
                 changeOrigin:true
+            },
+            "/solr_api":{
+                target:"https://m.meilele.com",
+                changeOrigin:true
             }
         }
     },

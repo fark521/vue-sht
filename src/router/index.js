@@ -50,6 +50,11 @@ const router = new VueRouter({
         requiredAuth:false
       },
     },
+    {
+      path:"/search",
+      component:_=>import("@pages/search"),
+      name:"search",
+    },
   ]
 })
 

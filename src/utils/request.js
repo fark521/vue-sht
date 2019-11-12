@@ -14,13 +14,14 @@ server.interceptors.request.use((config)=>{
 
     // config.headers["content-type"] = "applicetion/json";
     // config.headers["token"] = "";
+    return config;
 },(err)=>{
     return Promise.reject(err);
 })
 
 
 //响应拦截
-server.interceptors.reponse.use((res)=>{
+server.interceptors.response.use((res)=>{
     if(res.status == 200){
         return res.data;
     }
