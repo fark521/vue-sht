@@ -4,12 +4,12 @@
         <header>
             <div class="header-content">
                 <img src="https://static.mll3321.com/mll/common/i/logo2.png"/>
-                <div class="search">
+                <v-touch tag="div" class="search" @tap="handleSearch()">
                     <i class="iconfont icon-sousuo"></i>
                     <span>搜索商品</span>
-                </div>
+                </v-touch>
                 <div class="location" @click="handlepush()">
-                    <span>{{title}}</span>
+                    <span>{{this.$store.state.city.nm}}</span>
                     <i class="iconfont icon-xiala"></i>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                 </ul>
             </div>
         </header>
-        <div class="content">
+        <div class="content" ref="home">
             <div class="banner">
                 <Banner/>
             </div>
@@ -74,12 +74,12 @@
                         <img src="http://img004.mll3321.com//images/upload/201908/e59e3ae6094e76e963296a9228cdc6f5.jpg"/>
                         <img src="//img003.mll3321.com//images/upload/201908/61fad1da0290008ef32cc83c71025121.jpg"/>
                         <div class="abso">
-                            <p>清新实木餐台套装</p>
-                            <i>￥4599</i>
+                            <p>1.8米鹅掌揪实木床</p>
+                            <i>￥8599</i>
                         </div>
                         <div class="abso">
-                            <p>清新实木餐台套装</p>
-                            <i>￥4599</i>
+                            <p>皮布沙发套装</p>
+                            <i>￥24797</i>
                         </div>
                     </div>
                 </div>
@@ -104,26 +104,24 @@
                 </ul>
             </div>
         </div>
+         <v-touch tag="em" class="iconfont icon-shang" @tap="handleTop()"></v-touch>
+        <Bottom/>
     </div>
 </template>
 
 <script>
+import Bottom from "@common/components/bottom"
 import Banner from "@common/components/wheel";
 import {homegoods,homelists} from "@api/home";
 export default {
     name:"home",
     components:{
         Banner,
+        Bottom,
     },
     created(){
         this.handleGetGoods();
         this.handleGetGoodList();
-    },
-    props:{
-        title:{
-            type:String,
-            default:"全国"
-        }
     },
     data(){
         return{
@@ -203,6 +201,20 @@ export default {
         },
         handlepush(){
             this.$router.push("/city");
+        },
+        handleTop(){
+            console.log(this.$refs.home.scrollTop);
+            let _me=this;
+            let time=setInterval(_=>{
+                _me.$refs.home.scrollTop -= 100;
+                if(_me.$refs.home.scrollTop<=0){
+                    _me.$refs.home.scrollTop =0;
+                    clearInterval(time);
+                }
+            },50);
+        },
+        handleSearch(){
+            this.$router.push('./search');
         }
     }
 }
@@ -215,11 +227,10 @@ export default {
         top:0;
         left:0;
         right:0;
-        bottom:0;
         width: 100%;
         padding-top:.62rem;
         padding-bottom:.5rem;
-
+        overflow: auto;
         header{
             width: 100%;
             height:.62rem;
@@ -293,7 +304,6 @@ export default {
         .content{
             width: 100%;
             min-height:0;
-             padding-bottom:.5rem;
             background:#eee;
             .banner{
                 width: 100%;
@@ -534,6 +544,17 @@ export default {
                     }
                 }
             }
+        }
+        em{  
+            width: .3rem;
+            height: .3rem;
+            border-radius: 50%;
+            background: #fff;
+            position: fixed;
+            bottom:0.7rem;
+            right:.1rem;
+            font-size: .3rem;
+            color:#aaa;
         }
     }
 </style>

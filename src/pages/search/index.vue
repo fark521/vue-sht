@@ -8,7 +8,8 @@
                     <span class="iconfont">&#xe606;</span>
                 </div>
                 <div class="qx">
-                    <a href="#">取消</a>
+                    <!-- <v-touch tag="a" @tap="handleCancel">取消</v-touch> -->
+                    <a>取消</a>
                 </div>
             </div>
             <div class="emss">
@@ -44,9 +45,12 @@ export default {
     methods:{
         async handleGetSearch(){
             let data = await searchApi();
-            console.log(data);
+            
             this.searchList = data.hotSearchWordList;
-        }
+        },
+        // handleCancel(){
+        //     this.$router.back();
+        // }
     }
 }
 </script>
