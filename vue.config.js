@@ -7,10 +7,14 @@ module.exports = {
                 target:"https://m.meilele.com",
                 changeOrigin:true
             },
-            "/solr_api":{
+            "/dubbo_api":{
                 target:"https://m.meilele.com",
                 changeOrigin:true
-            }
+            },
+            "/api":{
+                target:"http://39.97.33.178",
+                changeOrigin:true
+            },
         }
     },
 

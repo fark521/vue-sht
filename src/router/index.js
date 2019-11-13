@@ -51,9 +51,14 @@ const router = new VueRouter({
       },
     },
     {
-      path:"/search",
-      component:_=>import("@pages/search"),
-      name:"search",
+      path:"/city",
+      component:_=>import("@pages/city"),
+      name:"city",
+      meta:{
+        title:"定位",
+        tabBarFlag:false,
+        requiredAuth:false
+      },
     },
   ]
 })

@@ -2,7 +2,7 @@
     
 
     <div class="header">
-        <i class="iconfont icon-icon-left" @click="handleback"></i>
+        <v-touch  tag="i" class="iconfont icon-icon-left" @tap="handleback()"></v-touch>
         <p>{{title}}</p>
         <i>· · ·</i>
     </div>
