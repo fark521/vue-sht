@@ -38,6 +38,8 @@ export default {
         border-bottom:1px solid #aaa;
         font-size:.18rem;
         padding:0 .15rem;
+        background: #fff;
+        z-index: 20;
         i{
             display: flex;
             align-items: center;

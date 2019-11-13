@@ -8,7 +8,7 @@
                     <span class="iconfont">&#xe606;</span>
                 </div>
                 <div class="qx">
-                    <a href="#">取消</a>
+                    <a href="#/classify">取消</a>
                 </div>
             </div>
             <div class="emss">

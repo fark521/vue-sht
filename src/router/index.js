@@ -65,6 +65,16 @@ const router = new VueRouter({
       component:_=>import("@pages/search"),
       name:"search",
     },
+    {
+      path:"/today",
+      component:_=>import("@pages/today"),
+      name:"today",
+    },
+    {
+      path:"/wood",
+      component:_=>import("@pages/wood"),
+      name:"wood",
+    }
   ]
 })
 

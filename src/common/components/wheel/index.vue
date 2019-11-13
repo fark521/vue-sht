@@ -17,10 +17,11 @@ export default {
     data(){
         return{
             images:[
-                "http://image.meilele.com/images/201911/1572835335735634646.jpg",
+                "http://image.meilele.com/images/201911/1572835335735634646.jpg",   
                 "http://image.meilele.com/images/201909/1569521035968599049.jpg",
                 "http://image.meilele.com/images/201807/1531355777767220587.jpg",
-            ]
+            ],
+           
         }
     }
 }

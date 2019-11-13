@@ -27,12 +27,12 @@
             </div>
             <div class="active-bg">
                 <ul>
-                    <li
-                    v-for="(item,index) in arr2" 
-                    :key="index">
+                    <router-link
+                    v-for="item in arr2" 
+                    :key="item.id" :to="item.path" tag="li">
                     <img :src="item.url"/>
                     <span>{{item.title}}</span>
-                    </li>
+                    </router-link>
                 </ul>
             </div>
             <div class="index-groupbuy">
@@ -154,37 +154,53 @@ export default {
                 },
             ],
             arr2:[
-                {
+                {   
+                    id:0,
                     title:"体验馆",
-                    url:"http://image.meilele.com/images/201907/1563130946587908766.jpg"
+                    url:"http://image.meilele.com/images/201907/1563130946587908766.jpg",
+                    path:"/experience"
                 },
                 {
+                    id:1,
                     title:"排行榜",
-                    url:"http://image.meilele.com/images/201907/1563130976630267490.jpg"
+                    url:"http://image.meilele.com/images/201907/1563130976630267490.jpg",
+                    path:"/ranking"
                 },
                 {
+                    id:2,
                     title:"每日特卖",
-                    url:"http://image.meilele.com/images/201907/1563131021896383462.jpg"
+                    url:"http://image.meilele.com/images/201907/1563131021896383462.jpg",
+                    path:"/today"
                 },
                 {
+                    id:3,
                     title:"阅木",
-                    url:"http://image.meilele.com/images/201907/1563131064221658082.jpg"
+                    url:"http://image.meilele.com/images/201907/1563131064221658082.jpg",
+                    path:"/wood"
                 },
                 {
+                    id:4,
                     title:"实木家具",
-                    url:"http://image.meilele.com/images/201907/1563131080096635544.jpg"
+                    url:"http://image.meilele.com/images/201907/1563131080096635544.jpg",
+                    path:"/furniture"
                 },
                 {
+                    id:5,
                     title:"沙发",
-                    url:"http://image.meilele.com/images/201907/1563131093521181710.jpg"
+                    url:"http://image.meilele.com/images/201907/1563131093521181710.jpg",
+                    path:"/soft"
                 },
                 {
+                    id:6,
                     title:"床",
-                    url:"http://image.meilele.com/images/201907/1563131115705453289.jpg"
+                    url:"http://image.meilele.com/images/201907/1563131115705453289.jpg",
+                    path:"/bed"
                 },
                 {
+                    id:7,
                     title:"床垫",
-                    url:"http://image.meilele.com/images/201907/1563131129464675923.jpg"
+                    url:"http://image.meilele.com/images/201907/1563131129464675923.jpg",
+                    path:"/Mattress"
                 },
                 
             ],
