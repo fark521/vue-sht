@@ -64,6 +64,21 @@ const router = new VueRouter({
       path:"/search",
       component:_=>import("@pages/search"),
       name:"search",
+      meta:{
+        title:"搜索",
+        tabBarFlag:false,
+        requiredAuth:false
+      },
+    },
+    {
+      path:"/experience",
+      component:_=>import("@pages/experience"),
+      name:"experience",
+      meta:{
+        title:"体验馆列表",
+        tabBarFlag:false,
+        requiredAuth:false
+      },
     },
     {
       path:"/today",

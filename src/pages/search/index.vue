@@ -44,9 +44,12 @@ export default {
     methods:{
         async handleGetSearch(){
             let data = await searchApi();
-            console.log(data);
+            
             this.searchList = data.hotSearchWordList;
-        }
+        },
+        // handleCancel(){
+        //     this.$router.back();
+        // }
     }
 }
 </script>
