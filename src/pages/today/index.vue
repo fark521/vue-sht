@@ -3,11 +3,7 @@
         <Header :title="title"/>
         <div class="nav">
             <ul class="nav_list">
-                <li class="list_item"><a href="#">今日特卖</a></li>
-                <li class="list_item"><a href="#">日系简约</a></li>
-                <li class="list_item"><a href="#">轻奢主义</a></li>
-                <li class="list_item"><a href="#">真皮家具</a></li>
-                <li class="list_item"><a href="#">小户专属</a></li>
+                <li class="list_item" v-for="(item,index) in tod" :key="index"><a href="#">{{item.name}}</a></li>
             </ul>
         </div>
         
@@ -25,52 +21,15 @@
                 <h3 class="todaytitle">今日必买</h3>
                 <div class="swiper_content">
                     <ul class="content_list">
-                        <li class="today_list">
+                        <li class="today_list" v-for="(item,index) in todaybuy" :key="index">
                             <a href="#">
-                                <img src="//img002.mll3321.com//images/small/143/width/250/height/250/mode/1/encrypt/3e970a763ee007b6dafc2d315234f197/path/YKkxtD0+l8CT6mdTP0jUTosXyzGqRaYb484nDncYwHMG4v0pAXeT8pOV4r_pBv8aLW7sJHSRi31a1NLD3tuZhg==.jpg"/>
+                                <img :src="'https://img003.mll3321.com//'+item.goods_img"/>
                             </a>
                             <h3 class="goods-title">
-                                <a href="#">1.5米儿童床 进口实木双层床</a>
+                                <a href="#">{{item.new_goods_name}}</a>
                             </h3>
                             <p class="goods-price">
-                            ￥<span class="now">3899</span>
-                            <span class="orgin"></span>
-                            </p>
-                        </li>
-                        <li class="today_list">
-                            <a href="#">
-                                <img src="//img002.mll3321.com//images/small/143/width/250/height/250/mode/1/encrypt/3e970a763ee007b6dafc2d315234f197/path/YKkxtD0+l8CT6mdTP0jUTosXyzGqRaYb484nDncYwHMG4v0pAXeT8pOV4r_pBv8aLW7sJHSRi31a1NLD3tuZhg==.jpg"/>
-                            </a>
-                            <h3 class="goods-title">
-                                <a href="#">1.5米儿童床 进口实木双层床</a>
-                            </h3>
-                            <p class="goods-price">
-                            ￥<span class="now">3899</span>
-                            <span class="orgin"></span>
-                            </p>
-                        </li>
-                        <li class="today_list">
-                            <a href="#">
-                                <img src="//img002.mll3321.com//images/small/143/width/250/height/250/mode/1/encrypt/3e970a763ee007b6dafc2d315234f197/path/YKkxtD0+l8CT6mdTP0jUTosXyzGqRaYb484nDncYwHMG4v0pAXeT8pOV4r_pBv8aLW7sJHSRi31a1NLD3tuZhg==.jpg"/>
-                            </a>
-                            <h3 class="goods-title">
-                                <a href="#">1.5米儿童床 进口实木双层床</a>
-                            </h3>
-                            <p class="goods-price">
-                            ￥<span class="now">3899</span>
-                            <span class="orgin"></span>
-                            </p>
-                        </li>
-
-                        <li class="today_list">
-                            <a href="#">
-                                <img src="//img002.mll3321.com//images/small/143/width/250/height/250/mode/1/encrypt/3e970a763ee007b6dafc2d315234f197/path/YKkxtD0+l8CT6mdTP0jUTosXyzGqRaYb484nDncYwHMG4v0pAXeT8pOV4r_pBv8aLW7sJHSRi31a1NLD3tuZhg==.jpg"/>
-                            </a>
-                            <h3 class="goods-title">
-                                <a href="#">1.5米儿童床 进口实木双层床</a>
-                            </h3>
-                            <p class="goods-price">
-                            ￥<span class="now">3899</span>
+                            ￥<span class="now">{{item.show_price}}</span>
                             <span class="orgin"></span>
                             </p>
                         </li>
@@ -80,10 +39,9 @@
 
 
 
-        <div class="floor-module">
+        <div class="floor-module" v-for="(item,index) in bigimg" :key="index">
             <div class="big_img">
-                  <img src="//img004.mll3321.com//images/upload/201810/0ef1ce92f1133e2a2698200d7dc099db.jpg"/>
-                    
+                  <img :src=bigimg[index].img />        
             </div>
             <div class="recommed">
                 <ul class="recommed_list">
@@ -217,20 +175,24 @@
                 </ul>
             </div>
         </div>
+        <Bottom/>
     </div>
+    
     </div>
 </template>
 
 <script>
 import Header from "@common/components/header"
+import Bottom from "@common/components/bottom"
 import Vue from 'vue';
 import { Swipe, SwipeItem } from 'vant';
-
+import {todaybuyApi} from "@api/today";
 Vue.use(Swipe).use(SwipeItem);
 export default {
     name:"today",
     components:{
         Header,
+        Bottom,
     },
     data(){
         return{
@@ -238,7 +200,48 @@ export default {
             todayimg:[
                 "http://image.meilele.com/images/201810/1539640659545709426.jpg",
                 "http://img002.mll3321.com/images/201810/1539735584317425260.jpg",
+            ],
+            todaybuy:[],   
+            tod:[
+                {
+                    name:"今日特卖"
+                },
+                {
+                    name:"日系简约"
+                },
+                {
+                    name:"轻奢主义"
+                },
+                {
+                    name:"真皮家具"
+                },
+                {
+                    name:"小户专属"
+                },
+            ],
+            bigimg:[
+                {
+                    img:"http://img004.mll3321.com//images/upload/201810/0ef1ce92f1133e2a2698200d7dc099db.jpg"
+                },
+                {
+                    img:"http://img002.mll3321.com//images/upload/201810/e6fba6212f0ae9e6c757d3a739a52b14.jpg"
+                },
+                {
+                    img:"http://img001.mll3321.com//images/upload/201901/a19c020e478cb0c714625422aa9e05a3.png"
+                },
+                {
+                    img:"http://img001.mll3321.com//images/upload/201810/d8346665d81330208f0fe689558af115.jpg"
+                },
             ]
+        }
+    },
+    created(){
+            this.handleGetTodayBuy();
+    },
+    methods:{
+        async handleGetTodayBuy(){
+            let data = await todaybuyApi();
+            this.todaybuy = data.goods;
         }
     }
 }

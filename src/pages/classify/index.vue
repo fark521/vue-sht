@@ -13,11 +13,11 @@
       <div class="hot">
         <div class="title">热门专场</div>
         <ul>
-          <li v-for="(item,index) in arr" :key="index">
+          <router-link to='/storeList' tag="li"  v-for="(item,index) in arr" :key="index">
             <a href="#">
               <img :src=arr[index].img />
             </a>
-          </li>
+          </router-link>
         </ul>
 
         <div class="title">热门搜索</div>

@@ -18,7 +18,12 @@ module.exports = {
             "/solr_api":{
                 target:"https://m.meilele.com",
                 changeOrigin:true
+            },
+            "/solr_api":{
+                target:"https://www.meilele.com",
+                changeOrigin:true
             }
+            
         }
     },
 

@@ -223,7 +223,8 @@ export default {
         return{
             title:"阅木",
         }
-    }
+    },
+
 }
 </script>
 
@@ -323,9 +324,6 @@ export default {
 .center .icon{
     width:0.1rem;
     height:0.09rem;
-    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAbCAYAAABr/T8RAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAuNJREFUeNq0lmlIVFEYhs+9M7dFjCRtM5o2ooWwHxFE0iJEFEhRpEmFYEX9aoFoIYIgsAysaSGiopI2WiACoWCgjZZfkdSPIiIoJQhzqCSrkRmn94P34vHOmfGOzLzwyDnXb+53vrO851rJqgpl0FSwHiwCpeAfaAOPwRXw3RM/EmwEFYx3GP8UXAWt3gSWJ/FYcAKsAbYy6zfYB87I79neDwrTxMc52D0gako8B9wHozw/7OQgvC8+D4pAtc/4L2A5eK+0qiaBB1rSH+AgmAKGg2GgDDRpL9qiJZWqGsE0LX46OMoZEk0AETBar/gR10f0GqwyrQu1FlwDQfb/MD6SJl72yz0wk/07MmCpeLGW9CtYliGp6BbYznaCmyqSIf4jp/gn+1UyCJsVuKo37FiTzoJyMJcD6U9SyAWtv87mC0Q94Lbyr5egJYv4y1q7XBJPZuebvt3zoA/0A9FESTxUOwb5lMxojO1CW1vTMRlMIxcq0M52VBK9YaeIJpIvyekJsP3WplvpppAvbdXazWIgJbSzAjrQbPAux0nng+f0dnHFkFTcAY4xIEhDH5TDpLJ5zzGpqEFs1NY6n7XL4nAOE58Cs9iWmTypPH5by/tWNsAu8IkO5aOm8ebnf9v24u9m9rrBBvdI6cfnGe9WV6fB6gFWaavuDvHzI+wn6ektvQF91ahVKZXfBDVZJpWzelc5I44rK+iuq3woXO87slRtAzfYdviDnT6ThsALsFJZdkANLokrKxDGUjSkTkmqElzvJi0mzJ3pZEhq8d4t633ihNWQ0t3mtTDLvWfruT6uuTwE4wybaAZ4omLtxbwIZAPV8TsrkU1id0McYPWuuS/gBqn0ONIrsFD1xEIq3tmM9hLPZ5Lq7ysznebxwg9pzy4Bcb0VnqtvKda01TArA0osKmYVlWn+fxHsAF3+zpt/RVndJvDL87yaRtHl92XBLM9oklMsH3eHOAAxifZsHea/AAMAsNWrpq7xtgQAAAAASUVORK5CYII=) no-repeat center center;
-    background-size: contain;
-    margin:0 0.05rem;
 }
 .wood_list{
     width:3.2rem;
