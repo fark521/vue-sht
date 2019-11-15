@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import Login from "./login"
+import Register from "./register"
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -37,7 +40,7 @@ const router = new VueRouter({
       meta:{
         title:"购物车",
         tabBarFlag:false,
-        requiredAuth:false
+        requiredAuth:true
       },
     },
     {
@@ -47,7 +50,7 @@ const router = new VueRouter({
       meta:{
         title:"我的",
         tabBarFlag:true,
-        requiredAuth:false
+        requiredAuth:true
       },
     },
     {
@@ -81,6 +84,34 @@ const router = new VueRouter({
       },
     },
     {
+      path:"/hall",
+      component:_=>import("@pages/hall"),
+      name:"hall",
+      meta:{
+        title:"品牌体验馆",
+        tabBarFlag:false,
+        requiredAuth:false
+      },
+    },
+    {
+      path:"/logins",
+      component:_=>import("@pages/login"),
+      name:"logins",
+      meta:{
+        title:"注册登陆",
+        tabBarFlag:false,
+        requiredAuth:false,
+      },
+      children:[
+        {
+          path:"",
+          redirect:"login"
+        },
+        Login,
+        Register
+      ]
+    },
+    {
       path:"/today",
       component:_=>import("@pages/today"),
       name:"today",
@@ -89,7 +120,7 @@ const router = new VueRouter({
       path:"/wood",
       component:_=>import("@pages/wood"),
       name:"wood",
-    }
+    },
   ]
 })
 

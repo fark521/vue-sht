@@ -10,18 +10,18 @@
             <h3>热门城市</h3>
             <div class="hot">
                 <v-touch tag="span" @tap="handleCityTo(item)"
-                v-for="item in hotCity" :key="item.id">{{item.nm}}</v-touch>
+                v-for="item in hotCity" :key="item.i">{{item.n}}</v-touch>
             </div>
             <h3>更多城市</h3>
             <div class="more">
-                <v-touch tag="span" @tap="handleTo(index)" v-for="(item,index) in cityList" :key="item.id">{{item.index}}</v-touch>
+                <v-touch tag="span" @tap="handleTo(index)" v-for="(item,index) in cityList" :key="index">{{item[0]}}</v-touch>
             </div>
             <div class="city_list" ref="city_list">
-                <div class="citylist" v-for="(items,index) in cityList" :key="index+'i'">{{items.nm}}
-                    <h3 class="title_letter">{{items.index}} (以{{items.index}}开头的城市)</h3>
+                <div class="citylist" v-for="(items,index) in cityList" :key="index">
+                    <h3 class="title_letter">{{items[0]}} (以{{items[0]}}开头的城市)</h3>
                     <div class="list_name">
                         <v-touch tag="div" @tap="handleCityTo(child)"
-                        class="list_name_item" v-for="child in items.list" :key="child.id">{{child.nm}}</v-touch>    
+                        class="list_name_item" v-for="child in items[1]" :key="child.id">{{child.n}}</v-touch>    
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@ export default {
         handleTop(){
             let _me=this;
             let time=setInterval(_=>{
-                _me.$refs.cityContent.scrollTop -= 1000;
+                _me.$refs.cityContent.scrollTop -= 500;
                 if(_me.$refs.cityContent.scrollTop<=0){
                     _me.$refs.cityContent.scrollTop =0;
                     clearInterval(time);

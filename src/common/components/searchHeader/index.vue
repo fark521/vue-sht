@@ -1,9 +1,9 @@
 <template>
     <div class="searchHeader">
-        <router-link class="inp" to="/search" tag="div"> 
+        <v-touch class="inp" tag="div" @tap="handleJump()"> 
             <i></i>
             <span>搜索商品</span>
-        </router-link>
+        </v-touch>
     </div>
 </template>
 
@@ -13,6 +13,11 @@ export default {
     data(){
         return{
             path:"/search"
+        }
+    },
+    methods:{
+        handleJump(){
+            this.$router.push("/search");
         }
     }
 
