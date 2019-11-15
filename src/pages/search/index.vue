@@ -8,7 +8,7 @@
                     <span class="iconfont">&#xe606;</span>
                 </div>
                 <div class="qx">
-                    <a href="#/classify">取消</a>
+                    <v-touch @tap="handleCancel()" tag="i">取消</v-touch>
                 </div>
             </div>
             <div class="emss">
@@ -47,9 +47,9 @@ export default {
             
             this.searchList = data.hotSearchWordList;
         },
-        // handleCancel(){
-        //     this.$router.back();
-        // }
+        handleCancel(){
+            this.$router.back();
+        }
     }
 }
 </script>
@@ -118,7 +118,7 @@ form input{
     text-align: center;
     color:#999;
 }
-.qx a{
+.qx i{
     color:#999;
 }
 .emss{

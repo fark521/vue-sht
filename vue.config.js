@@ -11,8 +11,8 @@ module.exports = {
                 target:"https://m.meilele.com",
                 changeOrigin:true
             },
-            "/api":{
-                target:"http://39.97.33.178",
+            "/mll_api":{
+                target:"https://www.meilele.com",
                 changeOrigin:true
             },
             "/solr_api":{

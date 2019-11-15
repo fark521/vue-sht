@@ -12,28 +12,30 @@
             <div class="expr_banner">
                 <img src="https://img004.mll3321.com//images/upload/201901/9c24c1673afb0b47a3380acd6462f537.jpg"/>
             </div>   
-            <div class="expr_content">
+            <router-link tag="div" class="expr_content" v-for="(item,index) in list" :key="index" 
+            :to="'/hall/?id='+index">
                 <div class="list">
                     <div class="title">
                         <div class="left">
                             <div class="L_top">
-                                <span>南京</span>
+                                <span>{{item.expr_name}}</span>
                                 <i class="iconfont icon-location"></i>
-                                <span>南京</span>
+                                <span>9.17km</span>
                             </div>
-                            <p>山西省</p>
+                            <p>{{item.addr}}</p>
                         </div>
-                        <i class="iconfont icon-you"></i>
+                        <i class="iconfont icon-you" ></i>
                     </div>
                     <div class="staff">
-                        <span></span>
+                        <span><img :src="item.image_url == '' ? 'https://static.mll3321.com/wap/mpg/expr/i/guide-img-default.png' : 'https://img001.mll3321.com/'+item.image_url"></span>
                         <span>联系他</span>
                         <i class="iconfont icon-icon_community_line"></i>
                     </div>
                     <div class="icon">
-                        <span>啊发发</span>
-                        <span>大大哇</span>
-                        <span>达瓦达瓦</span>
+                        <span>满5000减200</span>
+                        <span>满3000减100</span>
+                        <span>满1000减50</span>
+                        <span>到店有礼</span>
                     </div>
                     <div class="detail">
                         <p>
@@ -47,7 +49,7 @@
                     </div>
                 </div>
   
-            </div> 
+            </router-link> 
         </div>
         <div class="err_server">
             <img src="//static.mll3321.com/wap/mpg/expr/i/expr-info.png">
@@ -58,11 +60,20 @@
 </template>
 
 <script>
+import {museumApi} from "@api/city_museum";
 import Bottom from "@common/components/bottom";
 export default {
     name:"museum",
     components:{
         Bottom,
+    },
+    data(){
+        return{
+            list:[],
+        }
+    },
+    created(){
+        this.handleLocation(this.$store.state.city.cityId);
     },
     methods:{
         handleSwitch(){
@@ -71,7 +82,12 @@ export default {
         handlepush(){
             this.$router.push("/city");
         },
-    }
+        async handleLocation(cid){
+            let data = await museumApi(cid);
+            this.list = data.data;
+        }
+    },
+    
 }
 </script>
 
@@ -152,7 +168,7 @@ export default {
                     .title{
                         width: 2.7rem;
                         height: .36rem;    
-                        padding-bottom: 0;
+                        padding-top:.15rem ;
                         display: flex;
                         .left{
                             width: 90%;
@@ -166,7 +182,13 @@ export default {
                                 height: .2rem;
                                 line-height: .2rem;
                                 span{
-                                    margin-left:.1rem;
+                                    margin-right:.05rem;
+                                    font-size:.14rem;
+                                    &:nth-of-type(2){
+                                        margin-left:.05rem;
+                                        font-size:.12rem;
+                                        color:#999;
+                                    }
                                 }
                                 i{
                                     font-size: .12rem;
@@ -175,7 +197,11 @@ export default {
                             P{
                                 width: 100%;
                                 height: .16rem;
+                                color:#999;
                                 line-height: .16rem;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
                             }
                         }
                         i{
@@ -188,26 +214,51 @@ export default {
                         width: 2.7rem;
                         height: .45rem;
                         padding:0 .15rem;
+                        display: flex;
+                        align-items: center;
+                        margin-top:.15rem;
                         span{
+                            display: flex;
                             margin-right:.2rem;
+                            &:nth-of-type(1){
+                                width: .45rem;
+                                height: .45rem;
+                                border-radius: 50%;
+                                img{
+                                    width: .45rem;
+                                    height: .45rem;
+                                    border-radius: 50%;
+                                }
+                            }
                         }
+                        
                     }
                     .icon{
                         width: 100%;
-                        height: .4rem;
+                        height: .42rem;
                         padding:.05rem;
                         display: flex;
+                        flex-wrap: wrap;
                         span{
                             display: flex;
                             width: .58rem;
                             height: .15rem;
-                            font-size: .1rem;
+                            font-size: .09rem;
                             padding:.005rem;
                             justify-content: center;
-                            margin-right: .1rem;
+                            margin-left: .1rem;
                             margin-bottom: .06rem;
-                            background: #fb745a;
+                            border:1px solid #fb745a;
+                            color:#fb745a;
+                            &:nth-of-type(3){
+                                margin-right:.4rem;
+                            }
+                            &:nth-of-type(4){
+                                border:1px solid #ff9d11;
+                                color:#ff9d11;
+                            }
                         }
+                        
                     }
                     .detail{
                         width: 90%;

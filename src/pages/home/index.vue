@@ -105,6 +105,7 @@
             </div>
         </div>
          <v-touch tag="em" class="iconfont icon-shang" @tap="handleTop()"></v-touch>
+         <b tag="em" class="iconfont icon-icon_community_line"></b>
         <Bottom/>
     </div>
 </template>
@@ -235,7 +236,6 @@ export default {
     }
 }
 </script>
-
 <style lang="scss" scoped>
     .main{
         font-size: .14rem;
@@ -319,7 +319,7 @@ export default {
         }
         .content{
             width: 100%;
-            min-height:0;
+            height:100%;
             background:#eee;
             .banner{
                 width: 100%;
@@ -395,7 +395,7 @@ export default {
                             left:0;
                             width:.38rem;
                             height: .16rem;
-                            padding:.03rem .04rem;
+                            padding:.02rem .04rem;
                             background:#ff7a6a;
                             border-radius: 0.02rem;
                             color:#fff;
@@ -568,9 +568,23 @@ export default {
             background: #fff;
             position: fixed;
             bottom:0.7rem;
-            right:.1rem;
+            right:.15rem;
             font-size: .3rem;
             color:#aaa;
+        }
+        b{  
+            width: .4rem;
+            height: .4rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;         
+            border-radius: 50%;
+            background: #fff;
+            position: fixed;
+            bottom:1.1rem;
+            right:.1rem;
+            font-size: .3rem;
+            color:red;
         }
     }
 </style>

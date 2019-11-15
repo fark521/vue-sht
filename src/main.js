@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import VueTouch from "vue-touch"
+import "./lib/loading/index.js"
 
 Vue.use(VueTouch,{name:"v-touch"});
 
