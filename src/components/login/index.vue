@@ -2,11 +2,11 @@
      <div class="user-login">
             <div class="name">
                 <i class="iconfont icon-xiaolian"></i>
-                <input type="text" placeholder="请输入用户名">
+                <input type="text" placeholder="请输入用户名" ref="name">
             </div>
             <div class="password">
                 <i class="iconfont icon-suo"></i>
-                <input type="password" placeholder="请输入密码">
+                <input type="password" placeholder="请输入密码" ref="pwd">
             </div>
             <router-link tag="b" to="/logins/register">还没账号，去注册 >></router-link>
              <v-touch tag="span" @tap="handlelogin()">登陆</v-touch>
@@ -14,8 +14,43 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import { Toast } from 'vant';
+Vue.use(Toast);
+
+import {loginApi} from "@api/login";
 export default {
-    
+    name:"login",
+    data(){
+        return{
+            username:"",
+            password:"",
+        }
+    },
+
+    created(){
+        
+    },
+    methods:{
+        async handlelogin(){
+            this.username = this.$refs.name.value;
+            this.password = this.$refs.pwd.value;
+            let data = await loginApi(this.username,this.password);
+            if(data.data.code == 0){
+                this.$toast(data.data.info);
+            }else{
+                this.$toast(data.data.info);
+                if(this.$cookies.get("token")){
+                    this.$cookies.set("name",data.data.list.name)
+                    this.$cookies.set("urlPic",data.data.list.urlPic);
+                    this.$store.commit("login/handleToken");
+                    this.$router.push("/mine");
+                }
+            }
+            
+        },
+    },
+
 }
 </script>
 

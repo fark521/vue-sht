@@ -21,7 +21,7 @@
                         <input type="checkbox" class="single"/>
                         <img />
                         <div class="right">
-                            <p>至尊子项至尊子项至尊子项至尊子项至尊子项</p>
+                            <p>{{list.goods_name}}</p>
                             <span>￥1223.00</span>
                             <div class="bottom">
                                 <div class="lt">
@@ -61,7 +61,20 @@ export default {
     data(){
         return{
             title:"购物车",
+            id:"",
+            list:[]
         }
+    },
+    created(){
+        console.log(this);
+        this.id=this.$route.query.id;;
+        //console.log(this.id);
+        if(this.id<=11){
+          this.list=(JSON.parse(sessionStorage.getItem("this.storeList")))[this.id];    
+        }else{
+            this.list=(JSON.parse(sessionStorage.getItem("this.storeList2")))[this.id-12];
+        }
+        //console.log(this.list);
     }
 }
 </script>

@@ -19,11 +19,10 @@ module.exports = {
                 target:"https://m.meilele.com",
                 changeOrigin:true
             },
-            "/solr_api":{
-                target:"https://www.meilele.com",
+            "/users":{
+                target:"http://10.60.13.248:4000",
                 changeOrigin:true
             }
-            
         }
     },
 

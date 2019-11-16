@@ -66,6 +66,7 @@
 <script>
 import {storeListApi,storeListApi2} from "@api/list";
 import Bottom from "@common/components/bottom"
+import loading from "@lib/loading/index.js"
 export default {
     name:"storeList",
     components:{
@@ -144,25 +145,25 @@ export default {
             })
         },
         async handleGetList(){
+             loading.loadingMount();
             let data = await storeListApi();
-            
-            console.log(this.storeList)
+        
             sessionStorage.setItem("this.storeList",JSON.stringify(data.goods));
             //console.log(this.storeList);
-            if(sessionStorage.getItem(this.storeList)){
-                this.storeList = JSON.parse(sessionStorage.getItem(this.storeList))
+            if(sessionStorage.getItem("this.storeList")){
+                this.storeList = JSON.parse(sessionStorage.getItem("this.storeList"))
             }else{
                 this.storeList = data.goods;
             }
         },
         async handleGetList2(){
             let data = await storeListApi2();
-            this.storeList2 = data.goods;
+            loading.loadingDestory();
             //console.log(this.storeList2);
-            sessionStorage.setItem("this.storeList2",JSON.stringify(this.storeList2));
+            sessionStorage.setItem("this.storeList2",JSON.stringify(data.goods));
 
-            if(sessionStorage.getItem(this.storeList2)){
-                this.storeList2 = JSON.parse(sessionStorage.getItem(this.storeList2))
+            if(sessionStorage.getItem("this.storeList2")){
+                this.storeList2 = JSON.parse(sessionStorage.getItem("this.storeList2"))
             }else{
                 this.storeList2 = data.goods;
             }

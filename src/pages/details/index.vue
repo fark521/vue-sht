@@ -182,9 +182,9 @@
           <span class="iconfont">&#xe642;</span>
           <em>客服</em>
         </div>
-        <div class="addcart">
+        <router-link tag="div" class="addcart" :to="'/cart/?id='+id">
           <span>加入购物车</span>
-        </div>
+        </router-link>
         <div class="address">
           <span>获取门店地址</span>
         </div>
@@ -227,10 +227,10 @@ export default {
       this.look = data.goods;
     },
     handlePush(){
-      this.$store.commit("cart/handleInputAdd")
+      this.$store.commit("details/handleInputAdd")
     },
     handleReduce(){
-      this.$store.commit("cart/handleInputReduce")
+      this.$store.commit("details/handleInputReduce")
     }
 
     

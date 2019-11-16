@@ -62,6 +62,7 @@
 <script>
 import {museumApi} from "@api/city_museum";
 import Bottom from "@common/components/bottom";
+import loading from "@lib/loading/index.js"
 export default {
     name:"museum",
     components:{
@@ -83,7 +84,9 @@ export default {
             this.$router.push("/city");
         },
         async handleLocation(cid){
+            loading.loadingMount();
             let data = await museumApi(cid);
+            loading.loadingDestory();
             this.list = data.data;
         }
     },

@@ -2,25 +2,43 @@
      <div class="user-register">
             <div class="name">
                 <i class="iconfont icon-xiaolian"></i>
-                <input type="text" placeholder="请输入用户名">
+                <input type="text" placeholder="请输入用户名" ref="name">
             </div>
             <div class="password1">
                 <i class="iconfont icon-suo"></i>
-                <input type="password" placeholder="请输入密码">
-            </div>
-            <div class="password2">
-                <i class="iconfont icon-anquan"></i>
-                <input type="password" placeholder="请再次输入密码">
+                <input type="password" placeholder="请输入密码" ref="pwd">
             </div>
              <router-link tag="b" to="/logins/login">已有账号，立即登陆 >></router-link>
-             <v-touch tag="span" @tap="handlelogin()">注册</v-touch>
+             <v-touch tag="span" @tap="handleRegister()">注册</v-touch>
         </div>
 </template>
 
 <script>
+import {registerApi} from "@api/login";
 export default {
     name:"register",
+    data(){
+        return{
+            username:"",
+            password:"",
+        }
+    },
 
+    created(){
+        
+    },
+    methods:{
+        async handleRegister(){
+            this.username = this.$refs.name.value;
+            this.password = this.$refs.pwd.value;
+            let data = await registerApi(this.username,this.password);
+            if(data.data.code == 0){
+                this.$toast(data.data.info);
+            }else{
+                this.$toast(data.data.info);
+            }
+        },
+    },
 }
 </script>
 

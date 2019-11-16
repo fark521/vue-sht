@@ -1,17 +1,18 @@
 import {cityApi} from "@api/city";
-
+import loading from "@lib/loading/index.js"
 
 let state ={
     hotCity:JSON.parse(sessionStorage.getItem("hotCity")) || [],
     cityList:JSON.parse(sessionStorage.getItem("cityList")) || [],
-    cityId:35,
-    nm:"北京"
+    cityId:sessionStorage.getItem("cityId") ||35,
+    nm:sessionStorage.getItem("nm") ||"北京"
 }
 
 let actions = {
     async handleAsyncGetCity({commit}){
+        loading.loadingMount();
         let data = await cityApi();
-        console.log(data);
+        loading.loadingDestory();
         commit("handleGetCity",data.city_list_json);
     }
 }
@@ -20,6 +21,9 @@ let mutations ={
     handleUpdateCity(state,params){
         state.cityId = params.i;
         state.nm = params.n;
+
+        sessionStorage.setItem("cityId",params.i);
+        sessionStorage.setItem("nm",params.n);
     },
 
     handleGetCity(state,cities){
