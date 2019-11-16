@@ -5,8 +5,13 @@
             <i slot="i">· · ·</i>
         </Header>
         <div class="mine">
-            <div class="Head-portrait">
+            <div class="Head-portrait" v-show="this.$store.state.login.show1">
                 <v-touch @tap="handleLofin()" class="img" tag="div">点击登陆</v-touch>
+            </div>
+            <div class="Head-login" v-show="this.$store.state.login.show2">
+                <v-touch @tap="handleLofin()" class="img" tag="img" :src="pic"></v-touch>
+                <span>{{user}}</span>
+                <v-touch class="iconfont icon-shezhi" tag="i" @tap="handleEsc()"></v-touch>
             </div>
             <ul class="head-nav">
                 <li>
@@ -85,6 +90,8 @@ export default {
     },
     data(){
         return{
+            user:"",
+            pic:"",
             title:"我的美乐乐",
             arr1:[
                 {
@@ -146,9 +153,19 @@ export default {
             ],
         }
     },
+    created(){
+        this.user =this.$cookies.get("name");
+        this.pic =this.$cookies.get("urlPic");
+    },
     methods:{
         handleLofin(){
             this.$router.push("/logins");
+        },
+        handleEsc(){
+            this.$cookies.remove("token");
+            this.$cookies.remove("name");
+            this.$cookies.remove("urlPic");
+            this.$store.commit("login/handleEsc");
         }
     }
 }
@@ -191,6 +208,37 @@ export default {
                 height: .66rem;
                 background: red;
                 background: url('http://image.meilele.com/wap/images/user/m-user-ico.png') 2.65rem -7.8rem;
+            }
+        }
+        .Head-login{
+            width: 100%;
+            height: .9rem;
+             text-align: center;
+             line-height: 1rem;
+             color:#c33;
+            padding:0 .12rem;
+            display: flex;
+            padding-left:.2rem;
+            align-items: center;
+            font-size: .12rem;
+            position: relative;
+            .img{
+                border-radius: 50%;
+                width: .66rem;
+                height: .66rem;
+                background: red;
+            }
+             span{
+                color:#fff;
+                font-size: .16rem;
+                margin-left:.1rem;
+            }
+            i{
+                position: absolute;
+                top:-.2rem;
+                right:.15rem;
+                color:#fff;
+                font-size:.18rem;
             }
         }
         .head-nav{

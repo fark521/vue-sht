@@ -68,10 +68,15 @@
 
 <script>
 import {storeListApi,storeListApi2} from "@api/list";
+<<<<<<< HEAD
 import Bottom from "@common/components/bottom";
 import Vue from 'vue';
 import { PullRefresh } from 'vant';
 Vue.use(PullRefresh);
+=======
+import Bottom from "@common/components/bottom"
+import loading from "@lib/loading/index.js"
+>>>>>>> d0db86f17cb18960c1ff4a7f84763a02376d8f35
 export default {
     name:"storeList",
     components:{
@@ -156,25 +161,30 @@ export default {
             })
         },
         async handleGetList(){
+             loading.loadingMount();
             let data = await storeListApi();
+<<<<<<< HEAD
             
             //console.log(this.storeList)
+=======
+        
+>>>>>>> d0db86f17cb18960c1ff4a7f84763a02376d8f35
             sessionStorage.setItem("this.storeList",JSON.stringify(data.goods));
             //console.log(this.storeList);
-            if(sessionStorage.getItem(this.storeList)){
-                this.storeList = JSON.parse(sessionStorage.getItem(this.storeList))
+            if(sessionStorage.getItem("this.storeList")){
+                this.storeList = JSON.parse(sessionStorage.getItem("this.storeList"))
             }else{
                 this.storeList = data.goods;
             }
         },
         async handleGetList2(){
             let data = await storeListApi2();
-            this.storeList2 = data.goods;
+            loading.loadingDestory();
             //console.log(this.storeList2);
-            sessionStorage.setItem("this.storeList2",JSON.stringify(this.storeList2));
+            sessionStorage.setItem("this.storeList2",JSON.stringify(data.goods));
 
-            if(sessionStorage.getItem(this.storeList2)){
-                this.storeList2 = JSON.parse(sessionStorage.getItem(this.storeList2))
+            if(sessionStorage.getItem("this.storeList2")){
+                this.storeList2 = JSON.parse(sessionStorage.getItem("this.storeList2"))
             }else{
                 this.storeList2 = data.goods;
             }

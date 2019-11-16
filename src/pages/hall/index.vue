@@ -49,6 +49,7 @@
 <script>
 import {museumApi} from "@api/city_museum";
 import Header from "@common/components/header"
+import loading from "@lib/loading/index.js"
 export default {
     name:"hall",
     components:{
@@ -67,9 +68,10 @@ export default {
     },
     methods:{
         async handleLocation(cid){
+            loading.loadingMount();
             let data = await museumApi(cid);
+            loading.loadingDestory();
             this.details.push(data.data[this.id]);
-            console.log(this.details);
         }
     },
 }

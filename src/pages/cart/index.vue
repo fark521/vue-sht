@@ -63,6 +63,8 @@ export default {
         return{
             title:"购物车",
             goodList:[],
+             id:"",
+            list:[]
         }
     },
     created(){
@@ -77,6 +79,18 @@ export default {
         })
     },
     
+           
+    created(){
+        console.log(this);
+        this.id=this.$route.query.id;;
+        //console.log(this.id);
+        if(this.id<=11){
+          this.list=(JSON.parse(sessionStorage.getItem("this.storeList")))[this.id];    
+        }else{
+            this.list=(JSON.parse(sessionStorage.getItem("this.storeList2")))[this.id-12];
+        }
+        //console.log(this.list);
+    }
 }
 </script>
 

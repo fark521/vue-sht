@@ -111,9 +111,11 @@
 </template>
 
 <script>
+import messageBox from "@lib/messagebox/index.js"
 import Bottom from "@common/components/bottom"
 import Banner from "@common/components/wheel";
 import {homegoods,homelists} from "@api/home";
+import loading from "@lib/loading/index.js"
 export default {
     name:"home",
     components:{
@@ -121,6 +123,9 @@ export default {
         Bottom,
     },
     created(){
+        messageBox({
+            city:this.$store.state.city.nm,
+        })
         this.handleGetGoods();
         this.handleGetGoodList();
     },
@@ -209,11 +214,13 @@ export default {
     },
     methods:{
         async handleGetGoods(){
+            loading.loadingMount();
             let data = await homegoods();
             this.tg_goods=(data.result["2018Msy_tg"].goods_info)
         },
         async handleGetGoodList(){
             let data = await homelists();
+            loading.loadingDestory();
             this.goodList=data.result;
         },
         handlepush(){
@@ -292,11 +299,7 @@ export default {
                 height: .27rem;
                 display: flex;
                 ul{
-                    height: 100%;
-                    white-space: nowrap;
-                    overflow-x: auto;
-                    display: flex;
-                    align-items: center;
+                     
                     li{
                         padding:0 .04rem;
                         margin-right:.14rem;

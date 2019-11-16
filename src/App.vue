@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <keep-alive include="home,storeList,today,wood">
+      <router-view></router-view>
+    </keep-alive>
     <TabBar v-if="$route.meta.tabBarFlag"/>
   </div>
 </template>

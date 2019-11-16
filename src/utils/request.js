@@ -11,7 +11,7 @@ server.interceptors.request.use((config)=>{
     if(config.method == "get"){
         config.params = {...config.data}
     }
-    loading.loadingMount();
+    // loading.loadingMount();
     // config.headers["content-type"] = "applicetion/json";
     // config.headers["token"] = "";
 
@@ -24,7 +24,7 @@ server.interceptors.request.use((config)=>{
 //响应拦截
 server.interceptors.response.use((res)=>{
     if(res.status == 200){
-        loading.loadingDestory();
+        // loading.loadingDestory();
         return res.data;
     }
     

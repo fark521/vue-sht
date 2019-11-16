@@ -4,6 +4,9 @@ import router from './router'
 import store from './store'
 import VueTouch from "vue-touch"
 import "./lib/loading/index.js"
+import VueCookies from 'vue-cookies'
+
+Vue.use(VueCookies);
 
 Vue.use(VueTouch,{name:"v-touch"});
 
