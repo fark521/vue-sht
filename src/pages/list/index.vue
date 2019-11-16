@@ -68,15 +68,11 @@
 
 <script>
 import {storeListApi,storeListApi2} from "@api/list";
-<<<<<<< HEAD
 import Bottom from "@common/components/bottom";
 import Vue from 'vue';
 import { PullRefresh } from 'vant';
 Vue.use(PullRefresh);
-=======
-import Bottom from "@common/components/bottom"
 import loading from "@lib/loading/index.js"
->>>>>>> d0db86f17cb18960c1ff4a7f84763a02376d8f35
 export default {
     name:"storeList",
     components:{
@@ -163,12 +159,8 @@ export default {
         async handleGetList(){
              loading.loadingMount();
             let data = await storeListApi();
-<<<<<<< HEAD
             
             //console.log(this.storeList)
-=======
-        
->>>>>>> d0db86f17cb18960c1ff4a7f84763a02376d8f35
             sessionStorage.setItem("this.storeList",JSON.stringify(data.goods));
             //console.log(this.storeList);
             if(sessionStorage.getItem("this.storeList")){
