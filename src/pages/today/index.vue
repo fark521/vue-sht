@@ -3,7 +3,7 @@
         <Header :title="title"/>
         <div class="nav">
             <ul class="nav_list">
-                <li class="list_item" v-for="(item,index) in tod" :key="index"><a href="#">{{item.name}}</a></li>
+                <li class="list_item" v-for="(item,index) in tod" :key="index" @click="hanldleGetTop(index)"><a href="#">{{item.name}}</a></li>
             </ul>
         </div>
         

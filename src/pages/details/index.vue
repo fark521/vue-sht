@@ -182,12 +182,12 @@
           <span class="iconfont">&#xe642;</span>
           <em>客服</em>
         </div>
-        <div class="addcart">
+        <router-link tag="div" :to="'/cart'" class="addcart">
+          <span >查看购物车</span>
+        </router-link>
+        <v-touch tag="div" @tap="handleClick()" class="address" >
           <span>加入购物车</span>
-        </div>
-        <div class="address">
-          <span>获取门店地址</span>
-        </div>
+        </v-touch>
       </footer>
     </main>
   </div>
@@ -198,6 +198,10 @@ import Header from "@common/components/header";
 import Bottom from "@common/components/bottom";
 import {storeListApi2} from "@api/list";
 import {mapState,mapMutations} from "vuex";
+import Vue from 'vue';
+import { Toast } from 'vant';
+
+Vue.use(Toast);
 export default {
   name: "Details",
   data() {
@@ -206,6 +210,7 @@ export default {
       list1:[],
       look:[],
       id:"",
+      // goodsList:{}
     }
   },
   components: {
@@ -227,17 +232,33 @@ export default {
       this.look = data.goods;
     },
     handlePush(){
-      this.$store.commit("cart/handleInputAdd")
+      this.$store.commit("detail/handleInputAdd")
     },
     handleReduce(){
-      this.$store.commit("cart/handleInputReduce")
-    }
+      this.$store.commit("detail/handleInputReduce")
+    },
+    handleClick(){
+      Toast('加入成功')
+      // goodsList ={
+      //     price:this.list1.shop_price,
+      //     name:this.list1.new_goods_name,
+      //     imgage:this.list1.goods_img,
+      // }
+      this.$store.dispatch("cart/handleActionsGet",{
+          price:this.list1.shop_price,
+          name:this.list1.new_goods_name,
+          imgage:this.list1.goods_img,
+      });
+      
+      console.log(this.list1.shop_price);
+    },
+
 
     
   },
   computed:{
     ...mapState({
-       input:state=>state.cart.input
+       input:state=>state.detail.input
     })
    
   }

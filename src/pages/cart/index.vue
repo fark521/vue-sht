@@ -15,14 +15,14 @@
                     <p>以买满111</p>
                     <span>(已减111)</span>
                 </div>
-                <div class="product">
+                <div class="product" v-for="(item,index) in goodsList" :key="index">
                     <h3>满减></h3>
                     <div class="content">
                         <input type="checkbox" class="single"/>
-                        <img />
+                        <img :src="'https://img003.mll3321.com//'+item.imgage" />
                         <div class="right">
-                            <p>至尊子项至尊子项至尊子项至尊子项至尊子项</p>
-                            <span>￥1223.00</span>
+                            <p>{{item.name}}</p>
+                            <span>￥{{item.price}}</span>
                             <div class="bottom">
                                 <div class="lt">
                                     <i>-</i>
@@ -52,17 +52,31 @@
 <script>
 import Header from "@common/components/header"
 import Bottom from "@common/components/bottom"
+import {mapState} from "vuex"
 export default {
     name:"cart",
     components:{
         Header,
-        Bottom
+        Bottom,
     },
     data(){
         return{
             title:"购物车",
+            goodList:[],
         }
-    }
+    },
+    created(){
+    //     if(!sessionStorage.getItem("cartList")){
+    //         this.goodList=this.$store.state.cart.goodsList
+    //     }
+        this.$store.state.cart.goodsList=JSON.parse(localStorage.getItem("cartList"))
+    },
+    computed:{
+        ...mapState({
+            goodsList:state=>state.cart.goodsList
+        })
+    },
+    
 }
 </script>
 

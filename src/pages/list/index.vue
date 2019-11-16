@@ -27,45 +27,51 @@
                 <i class="iconfont">&#xe67b;</i>
             </li>
         </ul>
-        <div class="store_list">
-            <ul>
-                <router-link tag="li" :to="'/details/'+index"  class="goodsli" v-for="(item,index) in storeList" :key="index">
-                    <img :src="'https://img003.mll3321.com//'+item.goods_img" />
-                    <div class="goodsdata">
-                        <p>{{item.brand_name+'&nbsp;'+item.goods_name}}</p>
-                        <div class="extra">
-                            <i>￥{{item.shop_price}}</i>
-                            <span>已售{{item.total_sold_yes_count}}</span>
+        
+            <div class="store_list">
+                <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+                <ul>
+                    <router-link tag="li" :to="'/details/'+index"  class="goodsli" v-for="(item,index) in storeList" :key="index">
+                        <img :src="'https://img003.mll3321.com//'+item.goods_img" />
+                        <div class="goodsdata">
+                            <p>{{item.brand_name+'&nbsp;'+item.goods_name}}</p>
+                            <div class="extra">
+                                <i>￥{{item.shop_price}}</i>
+                                <span>已售{{item.total_sold_yes_count}}</span>
+                            </div>
                         </div>
-                    </div>
-                </router-link >
-                <li class="style_list">
-                    <div class="style_item" v-for="(item,index) in style" :key="index">
-                        <a href="#">
-                            <img :src="item.img" />
-                        </a>
-                    </div>
-                </li>
-                <router-link tag="li" :to="'/details/'+(Number(index)+Number(12))" class="goodsli" v-for="(item,index) in storeList2" :key="'info2-'+index">
-                    <img :src="'https://img003.mll3321.com//'+item.goods_img" />
-                    <div class="goodsdata">
-                        <p>{{item.brand_name+'&nbsp;'+item.new_goods_name}}</p>
-                        <div class="extra">
-                            <i>￥{{item.shop_price}}</i>
-                            <span>已售{{item.total_sold_yes_count}}</span>
+                    </router-link >
+                    <li class="style_list">
+                        <div class="style_item" v-for="(item,index) in style" :key="index">
+                            <a href="#">
+                                <img :src="item.img" />
+                            </a>
                         </div>
-                    </div>
-                </router-link>
-            </ul>
-            
-            <Bottom/>
-        </div>
+                    </li>
+                    <router-link tag="li" :to="'/details/'+(Number(index)+Number(12))" class="goodsli" v-for="(item,index) in storeList2" :key="'info2-'+index">
+                        <img :src="'https://img003.mll3321.com//'+item.goods_img" />
+                        <div class="goodsdata">
+                            <p>{{item.brand_name+'&nbsp;'+item.new_goods_name}}</p>
+                            <div class="extra">
+                                <i>￥{{item.shop_price}}</i>
+                                <span>已售{{item.total_sold_yes_count}}</span>
+                            </div>
+                        </div>
+                    </router-link>
+                </ul>
+                </van-pull-refresh>
+                <Bottom/>
+            </div>
+        
     </div>
 </template>
 
 <script>
 import {storeListApi,storeListApi2} from "@api/list";
-import Bottom from "@common/components/bottom"
+import Bottom from "@common/components/bottom";
+import Vue from 'vue';
+import { PullRefresh } from 'vant';
+Vue.use(PullRefresh);
 export default {
     name:"storeList",
     components:{
@@ -73,6 +79,7 @@ export default {
     },
     data(){
         return{
+          isLoading: false,
           storeList:[],
           storeList2:[],
           style:[
@@ -108,6 +115,11 @@ export default {
         this.handleGetList2();
     },
     methods:{
+        onRefresh() {
+            setTimeout(() => {
+                this.isLoading = false;
+            }, 500);
+        },
         handleListback(){
             this.$router.back();
         },
@@ -146,7 +158,7 @@ export default {
         async handleGetList(){
             let data = await storeListApi();
             
-            console.log(this.storeList)
+            //console.log(this.storeList)
             sessionStorage.setItem("this.storeList",JSON.stringify(data.goods));
             //console.log(this.storeList);
             if(sessionStorage.getItem(this.storeList)){

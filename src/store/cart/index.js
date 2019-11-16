@@ -1,23 +1,27 @@
-
 let state = {
-    input:1
+    goodsList:[]
 }
 
 let actions = {
-
+    handleActionsGet({commit},params){
+        commit("handleMutationsGet",params);
+    },
 }
 
 let mutations = {
-    handleInputReduce(state){
-        if(state.input<=1){
-            state.input=1
-        }else{
-            state.input--
-        }
+    handleMutationsGet(state,params){
+        //console.log(params);
+        state.goodsList.push(params);
+        console.log(params)
+
+        localStorage.setItem("cartList",JSON.stringify(state.goodsList));
+
+        // if(state.goodsList == JSON.parse(sessionStorage.getItem(cartList))){
+
+        // }
     },
-    handleInputAdd(state){
-        state.input++
-    }
+    
+    
 }
 
 
