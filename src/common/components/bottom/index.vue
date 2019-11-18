@@ -22,15 +22,14 @@ export default {
 
 <style lang="scss" scoped>
     .footer{
-            width:3.2rem;
+            width:100%;
             height:1.1rem;
             background:#414141;
-            float: left;
+            display: flex;
             padding:0.2rem 0.25rem;
             .record{
-                width:1.66rem;
+                width:70%;
                 height:0.58rem;
-                float: left;
                 .img_btn{
                     width:1.65rem;
                     height:0.24rem;
@@ -61,10 +60,9 @@ export default {
                 }
             }
             .qrcode{
-                width:0.5rem;
+                width:30%;
                 height:0.66rem;
-                float: right;
-                margin-right:0.2rem;
+                padding-left:0.3rem;
                 color:#aaa;
                 font-size:0.11rem;
                 img{

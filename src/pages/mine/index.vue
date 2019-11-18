@@ -11,7 +11,7 @@
             <div class="Head-login" v-show="this.$store.state.login.show2">
                 <v-touch @tap="handleLofin()" class="img" tag="img" :src="pic"></v-touch>
                 <span>{{user}}</span>
-                <v-touch class="iconfont icon-shezhi" tag="i" @tap="handleEsc()"></v-touch>
+                <v-touch class="iconfont icon-shezhi" tag="i" @tap="handleCenter()"></v-touch>
             </div>
             <ul class="head-nav">
                 <li>
@@ -161,12 +161,10 @@ export default {
         handleLofin(){
             this.$router.push("/logins");
         },
-        handleEsc(){
-            this.$cookies.remove("token");
-            this.$cookies.remove("name");
-            this.$cookies.remove("urlPic");
-            this.$store.commit("login/handleEsc");
+        handleCenter(){
+            this.$router.push("/esc");
         }
+        
     }
 }
 </script>

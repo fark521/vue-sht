@@ -6,7 +6,7 @@
         </Header>
         <div class="cart_list">
             <div class="head">
-                <input type="checkbox">
+                <input type="checkbox" :checked="this.$store.state.cart.selectedAll" @change="handleChange()">
                 <p>美乐乐</p>
             </div>
             <div class="list">
@@ -18,31 +18,32 @@
                 <div class="product" v-for="(item,index) in goodsList" :key="index">
                     <h3>满减></h3>
                     <div class="content">
-                        <input type="checkbox" class="single"/>
+                        <input type="checkbox" class="single" :checked="item.flag" @change="handleGoodsItemChange(index)"/>
                         <img :src="'https://img003.mll3321.com//'+item.imgage" />
                         <div class="right">
                             <p>{{item.name}}</p>
-                            <span>￥{{item.price}}</span>
+                            <span>{{item.mount | sign(item.price)}}</span>
                             <div class="bottom">
                                 <div class="lt">
-                                    <i>-</i>
-                                    <input type="text" value="1"/>
-                                    <i>+</i>
+                                    <v-touch @tap="handleReduce(index)" tag="i">-</v-touch>
+                                    <input type="text" :value="item.mount"/>
+                                    <v-touch @tap="handleAdd(index)" tag="i">+</v-touch>
                                 </div>
-                                <i class="iconfont icon-lajitong"></i>
+                                <v-touch class="iconfont icon-lajitong" @tap="handledelete(index)" tag="i"></v-touch>
                             </div>
                         </div>
                     </div>
                 </div>
                 
             </div>
+            
         </div>
         <Bottom/>
         <footer>
-            <input type="checkbox"/>
+            <input type="checkbox" :checked="this.$store.state.cart.selectedAll" @change="handleChange()"/>
             <span>全选</span>
             <div>
-                <p>合计：￥2222</p>
+                <p>已选：{{countPrice.sCount}}，合计：￥{{countPrice.sPrice}}</p>
                 <span>不含运费</span>
             </div>
         </footer>
@@ -52,7 +53,7 @@
 <script>
 import Header from "@common/components/header"
 import Bottom from "@common/components/bottom"
-import {mapState} from "vuex"
+import {mapState,mapMutations,mapGetters} from "vuex"
 export default {
     name:"cart",
     components:{
@@ -62,34 +63,38 @@ export default {
     data(){
         return{
             title:"购物车",
-            goodList:[],
              id:"",
             list:[]
         }
     },
-    created(){
-    //     if(!sessionStorage.getItem("cartList")){
-    //         this.goodList=this.$store.state.cart.goodsList
-    //     }
-        this.$store.state.cart.goodsList=JSON.parse(localStorage.getItem("cartList"))
+    methods:{
+        ...mapMutations({
+            handleChange:"cart/handleChange",
+            handleGoodsItemChange:"cart/handleGoodsItemChange",
+            handleAdd:"cart/handleAdd",
+            handleReduce:"cart/handleReduce",
+            handledelete:"cart/handledelete",
+        }),
     },
     computed:{
         ...mapState({
             goodsList:state=>state.cart.goodsList
-        })
+        }),
+        ...mapGetters({
+            countPrice:"cart/countPrice"
+        }),
     },
-    
-           
+    filters:{
+        sign(mount,price){
+            return "￥"+(mount * price)
+        }  
+    },
     created(){
-        console.log(this);
-        this.id=this.$route.query.id;;
-        //console.log(this.id);
-        if(this.id<=11){
-          this.list=(JSON.parse(sessionStorage.getItem("this.storeList")))[this.id];    
+        if(!localStorage.getItem("cartList")){
+            localStorage.setItem("cartList","[]");
         }else{
-            this.list=(JSON.parse(sessionStorage.getItem("this.storeList2")))[this.id-12];
+            this.$store.dispatch("cart/handleCart",JSON.parse(localStorage.getItem("cartList")));
         }
-        //console.log(this.list);
     }
 }
 </script>
@@ -99,7 +104,6 @@ export default {
         position: absolute;
         top:0;
         left: 0;
-        bottom:0;
         right:0;
         padding-top:.4rem;
         padding-bottom:.5rem;
@@ -192,7 +196,9 @@ export default {
                             }
                             p{
                                 width: 100%;
+                                height: .37rem;
                                 font-size:.13rem;
+                                overflow: hidden;
                             }
                             .bottom{
                                 width: 100%;

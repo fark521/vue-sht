@@ -17,6 +17,9 @@ let mutations = {
     },
     handleInputAdd(state){
         state.input++
+    },
+    handleRecovery(state){
+        state.input=1;
     }
 }
 

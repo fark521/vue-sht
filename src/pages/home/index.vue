@@ -299,7 +299,9 @@ export default {
                 height: .27rem;
                 display: flex;
                 ul{
-                     
+                     display: flex;
+                     white-space: nowrap;
+                     overflow-x: auto;
                     li{
                         padding:0 .04rem;
                         margin-right:.14rem;

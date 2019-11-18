@@ -94,6 +94,16 @@ const router = new VueRouter({
       },
     },
     {
+      path:"/esc",
+      component:_=>import("@pages/esc"),
+      name:"esc",
+      meta:{
+        title:"个人中心",
+        tabBarFlag:false,
+        requiredAuth:true
+      },
+    },
+    {
       path:"/logins",
       component:_=>import("@pages/login"),
       name:"logins",

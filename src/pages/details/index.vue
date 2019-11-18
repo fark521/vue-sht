@@ -26,7 +26,7 @@
           <span>数量:</span>
           <div class="set">
                 <v-touch class="set_submit" @tap="handleReduce()">-</v-touch>
-                <span class="set_input">{{input}}</span>
+                <span class="set_input">{{this.$store.state.details.input}}</span>
                 <v-touch class="set_push" @tap="handlePush()">+</v-touch>
           </div>
         </li>
@@ -198,10 +198,6 @@ import Header from "@common/components/header";
 import Bottom from "@common/components/bottom";
 import {storeListApi2} from "@api/list";
 import {mapState,mapMutations} from "vuex";
-import Vue from 'vue';
-import { Toast } from 'vant';
-
-Vue.use(Toast);
 export default {
   name: "Details",
   data() {
@@ -232,13 +228,13 @@ export default {
       this.look = data.goods;
     },
     handlePush(){
-      this.$store.commit("detail/handleInputAdd")
+      this.$store.commit("details/handleInputAdd")
     },
     handleReduce(){
-      this.$store.commit("detail/handleInputReduce")
+      this.$store.commit("details/handleInputReduce")
     },
     handleClick(){
-      Toast('加入成功')
+      this.$toast('加入成功')
       // goodsList ={
       //     price:this.list1.shop_price,
       //     name:this.list1.new_goods_name,
@@ -248,9 +244,9 @@ export default {
           price:this.list1.shop_price,
           name:this.list1.new_goods_name,
           imgage:this.list1.goods_img,
+          mount:this.$store.state.details.input,
       });
-      
-      console.log(this.list1.shop_price);
+      this.$store.commit("details/handleRecovery")
     },
 
 

@@ -5,6 +5,9 @@ import store from './store'
 import VueTouch from "vue-touch"
 import "./lib/loading/index.js"
 import VueCookies from 'vue-cookies'
+import {Toast} from 'vant';
+
+Vue.use(Toast);
 
 Vue.use(VueCookies);
 

@@ -21,7 +21,7 @@
         right:0;
         bottom:0;
         z-index:50;
-        font-size: .16rem;
+        font-size: .1rem;
     }
     figure { 
     position: absolute;
