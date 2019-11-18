@@ -206,7 +206,7 @@ export default {
       list1:[],
       look:[],
       id:"",
-      // goodsList:{}
+      goodsList:[]
     }
   },
   components: {
@@ -234,23 +234,38 @@ export default {
       this.$store.commit("details/handleInputReduce")
     },
     handleClick(){
-      this.$toast('加入成功')
-      // goodsList ={
-      //     price:this.list1.shop_price,
-      //     name:this.list1.new_goods_name,
-      //     imgage:this.list1.goods_img,
-      // }
-      this.$store.dispatch("cart/handleActionsGet",{
-          price:this.list1.shop_price,
-          name:this.list1.new_goods_name,
-          imgage:this.list1.goods_img,
-          mount:this.$store.state.details.input,
-      });
-      this.$store.commit("details/handleRecovery")
-    },
 
-
-    
+    this.goodsList = JSON.parse(localStorage.getItem("cartList"))
+          if(!this.goodsList){
+              this.goodsList=[]
+          }
+          this.$toast('加入成功')
+          var info = {
+              price:this.list1.shop_price,
+              name:this.list1.new_goods_name,
+              imgage:this.list1.goods_img,
+              mount:this.$store.state.details.input,
+              flag:true
+          }
+          var has = 0;
+          var index = "";
+          for(var i=0;i<this.goodsList.length;i++){
+              if(info.name == this.goodsList[i].name){
+                  has = 1;
+                  index = i;
+                  break;
+              }
+          }
+          if(has==0){
+              this.goodsList.push(info)
+          }
+          else{
+              this.goodsList[index].mount += info.mount
+          }
+        
+          localStorage.setItem("cartList",JSON.stringify(this.goodsList))
+          this.$store.state.details.input=1;
+      },
   },
   computed:{
     ...mapState({

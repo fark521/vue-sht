@@ -105,8 +105,8 @@ export default {
         top:0;
         left: 0;
         right:0;
-        padding-top:.4rem;
         padding-bottom:.5rem;
+        padding-top:.4rem;
         font-size:.14rem;
         background: #f5f5f5;
         .cart_list{

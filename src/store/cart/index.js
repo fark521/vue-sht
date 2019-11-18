@@ -13,6 +13,11 @@ let actions = {
 }
 
 let mutations = {
+    handleActionsAdd(state,params){
+        state.goodsList[params.index].mount += params.num
+        localStorage.setItem("cartList",JSON.stringify(state.goodsList));
+    },
+
     handleMutationsGet(state,params){
         state.goodsList.push(params);
         localStorage.setItem("cartList",JSON.stringify(state.goodsList));
@@ -62,8 +67,6 @@ let mutations = {
         state.goodsList.splice(index,1);
         localStorage.setItem("cartList",JSON.stringify(state.goodsList));
     }
-    
-    
 }
 let getters ={
     countPrice(){

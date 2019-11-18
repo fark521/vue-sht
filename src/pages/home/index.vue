@@ -84,7 +84,7 @@
                     </div>
                 </div>
             </div>
-            <div class="index-guess">
+            <div class="index-guess" ref="product">
                 <h3>
                     <span>猜你喜欢</span>
                 </h3>
@@ -111,6 +111,7 @@
 </template>
 
 <script>
+import BScroll from "better-scroll"
 import messageBox from "@lib/messagebox/index.js"
 import Bottom from "@common/components/bottom"
 import Banner from "@common/components/wheel";
@@ -240,6 +241,9 @@ export default {
         handleSearch(){
             this.$router.push('./search');
         }
+    },
+    mounted(){
+        new BScroll(this.$refs.product)
     }
 }
 </script>

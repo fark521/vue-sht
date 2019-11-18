@@ -37,7 +37,6 @@ export default {
                 this.$toast(data.data.info);
             }else{
                 this.$toast(data.data.info);
-                console.log(data);
                 if(this.$cookies.get("token")){
                     this.$cookies.set("name",data.data.list.name)
                     this.$cookies.set("urlPic",data.data.list.urlPic);
@@ -45,7 +44,6 @@ export default {
                     this.$router.push("/mine");
                 }
             }
-            
         },
     },
 
